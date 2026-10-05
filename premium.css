@@ -1,0 +1,116 @@
+/* Layer tambahan — dimuat setelah style2_cart_checkout2.css. Tidak menyentuh font-family. */
+:root {
+  --line: #262626;
+  --surface: #0e0e0e;
+  --move: cubic-bezier(0.65, 0, 0.35, 1);
+  --out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+::selection { background: var(--primary); color: #fff; }
+.visual-cursor-glow { display: none; }
+
+/* Navbar */
+.navbar {
+  background: rgba(1, 1, 1, 0.88);
+  border-bottom: 1px solid var(--line);
+  transition: padding 0.4s var(--out), border-color 0.4s;
+}
+.navbar.visual-scrolled { padding-top: 0.8rem; padding-bottom: 0.8rem; border-bottom-color: #3a3a3a; }
+.cart-badge.visual-bump { animation: pm-bump 0.4s var(--out); }
+
+/* Menu: indikator yang berpindah antar item (desktop) */
+@media (min-width: 769px) {
+  .navbar .navbar-nav { position: relative; }
+  .navbar .navbar-nav a::after { display: none; }
+  .navbar .navbar-nav a { transition: color 0.3s; padding: 0.3rem 0; }
+  .navbar .navbar-nav a.pm-on { color: var(--primary); }
+  .pm-ind {
+    position: absolute; left: 0; bottom: -0.7rem; height: 2px; width: 0;
+    background: var(--primary); pointer-events: none;
+  }
+  .pm-ind.ready { transition: transform 0.55s var(--move), width 0.55s var(--move); }
+}
+@media (max-width: 768px) { .pm-ind { display: none; } }
+
+/* Hero */
+.hero-slider { transform: translate3d(0, var(--hero-shift, 0px), 0); }
+.slide { overflow: hidden; }
+.slide::before {
+  content: ''; position: absolute; inset: 0; background: inherit;
+  transform: scale(1.08); transition: transform 8s ease-out;
+}
+.slide.active::before { transform: scale(1); }
+.slide .content h1 { font-size: clamp(3.2rem, 6vw, 6rem); line-height: 1.05; letter-spacing: -0.025em; }
+.slide.active .content > * { animation: pm-rise 0.8s var(--out) both; }
+.slide.active .content > :nth-child(2) { animation-delay: 0.1s; }
+.slide.active .content > :nth-child(3) { animation-delay: 0.2s; }
+.slide.active .content > :nth-child(4) { animation-delay: 0.3s; }
+.promo-tag { border-radius: 4px; letter-spacing: 0.08em; }
+.slide .content .cta, .checkout-btn, .contact .row form .btn {
+  position: relative; overflow: hidden; border-radius: 6px; box-shadow: none;
+  transition: background 0.3s, transform 0.3s var(--out);
+}
+.slide .content .cta:hover, .checkout-btn:hover, .contact .row form .btn:hover { transform: translateY(-2px); }
+.slider-btn { border: 1px solid #444; background: rgba(0, 0, 0, 0.35); }
+
+/* Judul section */
+.about h2, .products h2, .contact h2 { letter-spacing: -0.02em; font-size: clamp(2.6rem, 4vw, 3.8rem); }
+.about .row .about-img img { border-radius: 10px; }
+
+/* Reveal (kelas dipakai script bawaan) */
+.visual-reveal { opacity: 0; }
+.visual-visible { opacity: 1; animation: pm-in 0.8s var(--out) var(--visual-delay, 0ms) backwards; }
+
+/* Filter: pil yang berpindah ke tab aktif */
+.product-filter { position: relative; }
+.filter-btn { position: relative; z-index: 1; background: transparent; border-color: var(--line); border-radius: 6px; transition: color 0.3s, border-color 0.3s; }
+.filter-btn:hover { background: transparent; border-color: #555; }
+.filter-btn.active, .filter-btn.active:hover { background: transparent; border-color: transparent; }
+.pm-pill {
+  position: absolute; left: 0; top: 0; width: 0; height: 0; border-radius: 6px;
+  background: var(--primary); pointer-events: none; z-index: 0;
+}
+.pm-pill.ready { transition: transform 0.55s var(--move), width 0.55s var(--move), height 0.55s var(--move); }
+
+/* Kartu produk */
+.products .product-card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px; box-shadow: none;
+  transition: border-color 0.3s, transform 0.4s var(--out);
+}
+.products .product-card:hover { border-color: #5a3a10; transform: translateY(-4px); }
+.products .product-card img { transition: transform 0.9s var(--out); }
+.products .product-card:hover img { transform: scale(1.05); }
+.product-badge { border-radius: 4px; }
+.add-to-cart-btn { border-radius: 6px; transition: background 0.3s, color 0.3s, transform 0.2s; }
+.add-to-cart-btn:active { transform: scale(0.97); }
+.add-to-cart-btn.visual-added { animation: pm-bump 0.45s var(--out); }
+.visual-ripple {
+  position: absolute; border-radius: 50%; pointer-events: none; background: rgba(255, 255, 255, 0.3);
+  transform: scale(0); animation: pm-ripple 0.6s ease-out forwards;
+}
+
+/* Keranjang */
+.shopping-cart { background: #141414; border-radius: 0 0 0 12px; transition: right 0.5s var(--out); }
+.cart-item.visual-new { animation: pm-slide 0.5s var(--out); }
+.quantity-control span.visual-pulse { animation: pm-bump 0.4s var(--out); }
+.promo-row input, .checkout-field input, .checkout-field textarea { border-radius: 6px; transition: border-color 0.3s; }
+.choice-group label { border-radius: 6px; transition: border-color 0.3s, background 0.3s; }
+.choice-group label:has(input:checked) { border-color: var(--primary); background: rgba(217, 119, 6, 0.1); }
+
+/* Kontak & footer */
+.contact .row { border: 1px solid var(--line); border-radius: 10px; }
+.contact .row form .input-group { border-radius: 6px; transition: border-color 0.3s; }
+.contact .row form .input-group:focus-within { border-color: var(--primary); }
+footer { border-top: 1px solid var(--line); }
+
+@keyframes pm-rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@keyframes pm-in { from { opacity: 0; transform: translateY(28px); } }
+@keyframes pm-bump { 40% { transform: scale(1.35); } }
+@keyframes pm-slide { from { opacity: 0; transform: translateX(24px); } }
+@keyframes pm-ripple { to { transform: scale(1); opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .visual-reveal { opacity: 1; }
+}

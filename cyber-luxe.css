@@ -1,0 +1,493 @@
+/* ==========================================================================
+   CYBER LUXE — layer desain "elegan futuristik cyber" untuk SportNation
+   --------------------------------------------------------------------------
+   File ini DIMUAT PALING AKHIR (setelah style2_cart_checkout2.css & premium.css).
+   - Tidak mengubah HTML, JavaScript, menu, fitur, maupun teks.
+   - Tidak menyentuh font-family sama sekali (tetap Poppins milik Anda).
+   - Semua kode asli tetap utuh: hapus 1 baris <link> ke file ini = tampilan lama kembali.
+
+   ┌──────────────────────── PANDUAN EDIT CEPAT ────────────────────────┐
+   │ 1. GANTI WARNA TEMA     → bagian [1] PALET, ubah angka RGB saja.   │
+   │ 2. ATUR KEKUATAN GLOW   → bagian [1], variabel --cx-glow-strength. │
+   │ 3. MATIKAN GRID LATAR   → bagian [1], --cx-grid-opacity: 0.        │
+   │ 4. MATIKAN PROGRESS BAR → bagian [2], hapus blok "body::after".    │
+   │ 5. UBAH SUDUT KARTU     → bagian [1], --cx-radius.                 │
+   │ 6. EDIT PER KOMPONEN    → cari penanda [3]–[13] di bawah.          │
+   │ Setiap bagian diberi judul bernomor; gunakan Ctrl+F "[7]" dst.     │
+   └────────────────────────────────────────────────────────────────────┘
+
+   DAFTAR ISI
+   [1] Palet & variabel   [2] Dasar halaman   [3] Navbar   [4] Hero/Slider
+   [5] Judul section      [6] Tentang Kami    [7] Filter   [8] Kartu produk
+   [9] Keranjang & Checkout  [10] Kontak      [11] Footer  [12] Mobile
+   [13] Aksesibilitas (reduced motion)
+   ========================================================================== */
+
+
+/* ==========================================================================
+   [1] PALET & VARIABEL  ← BAGIAN PALING SERING DIEDIT
+   ========================================================================== */
+:root {
+  /* Warna aksen utama (RGB tanpa "rgb()") — default: cyan neon */
+  --cx-primary-rgb: 34, 211, 238;
+  /* Warna aksen kedua (dipakai di gradasi) — default: violet */
+  --cx-secondary-rgb: 139, 92, 246;
+
+  /* Turunan otomatis — tidak perlu diedit */
+  --cx-primary: rgb(var(--cx-primary-rgb));
+  --cx-secondary: rgb(var(--cx-secondary-rgb));
+  --cx-primary-soft: #67e8f9;           /* versi terang, untuk teks aksen */
+  --cx-ink: #021018;                    /* warna teks di atas tombol terang */
+
+  /* Permukaan gelap */
+  --cx-bg: #03050b;                     /* latar halaman */
+  --cx-surface: #080d18;                /* panel / kartu */
+  --cx-surface-2: #0d1526;              /* panel lapis kedua */
+  --cx-line: rgba(130, 180, 255, 0.14); /* garis tipis */
+  --cx-line-strong: rgba(var(--cx-primary-rgb), 0.5);
+
+  /* Teks */
+  --cx-text: #e8eef9;
+  --cx-muted: #93a3bd;
+
+  /* Efek */
+  --cx-glow-strength: 1;                /* 0 = tanpa glow, 1 = normal, 1.5 = kuat */
+  --cx-grid-opacity: 0.035;             /* 0 = tanpa grid latar */
+  --cx-radius: 10px;                    /* sudut kartu/panel */
+  --cx-radius-sm: 6px;                  /* sudut tombol/input */
+  --cx-grad: linear-gradient(135deg, var(--cx-primary), #38bdf8 55%, var(--cx-secondary));
+  --cx-grad-text: linear-gradient(100deg, #a5f3fc 0%, var(--cx-primary) 45%, #a78bfa 100%);
+  --cx-glow: 0 0 calc(26px * var(--cx-glow-strength)) rgba(var(--cx-primary-rgb), calc(0.35 * var(--cx-glow-strength)));
+
+  /* Menimpa variabel dari file lama agar seluruh situs ikut berganti warna */
+  --primary: var(--cx-primary);
+  --line: var(--cx-line);
+  --surface: var(--cx-surface);
+}
+
+/* --- Contoh tema lain: salin salah satu ke atas (ganti 2 baris RGB) -------
+   Emerald  : --cx-primary-rgb: 52, 211, 153;  --cx-secondary-rgb: 34, 211, 238;
+   Violet   : --cx-primary-rgb: 167, 139, 250; --cx-secondary-rgb: 244, 114, 182;
+   Ice-blue : --cx-primary-rgb: 96, 165, 250;  --cx-secondary-rgb: 129, 140, 248;
+   ------------------------------------------------------------------------ */
+
+
+/* ==========================================================================
+   [2] DASAR HALAMAN
+   ========================================================================== */
+html { scroll-behavior: smooth; scrollbar-color: rgba(var(--cx-primary-rgb), 0.5) var(--cx-bg); scrollbar-width: thin; }
+body { background-color: var(--cx-bg); color: var(--cx-text); }
+
+::selection { background: rgba(var(--cx-primary-rgb), 0.35); color: #fff; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--cx-bg); }
+::-webkit-scrollbar-thumb { background: rgba(var(--cx-primary-rgb), 0.4); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(var(--cx-primary-rgb), 0.7); }
+input[type="radio"], input[type="checkbox"] { accent-color: var(--cx-primary); }
+
+/* Grid halus di seluruh halaman (HUD). Atur --cx-grid-opacity di [1]. */
+body::before {
+  content: ''; position: fixed; inset: 0; z-index: 1; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(150, 200, 255, var(--cx-grid-opacity)) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(150, 200, 255, var(--cx-grid-opacity)) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, #000 0%, transparent 80%);
+          mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, #000 0%, transparent 80%);
+}
+
+/* Progress bar scroll di paling atas (hanya browser yang mendukung; aman diabaikan). */
+@supports (animation-timeline: scroll()) {
+  body::after {
+    content: ''; position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 100000;
+    pointer-events: none; transform-origin: 0 50%; transform: scaleX(0);
+    background: var(--cx-grad); box-shadow: 0 0 12px rgba(var(--cx-primary-rgb), 0.8);
+    animation: cx-progress linear both; animation-timeline: scroll(root);
+  }
+}
+@keyframes cx-progress { to { transform: scaleX(1); } }
+
+/* Cahaya ambient di tiap section (hanya background-image, warna dasar asli tetap) */
+.about {
+  background-image: radial-gradient(55% 60% at 8% 30%, rgba(var(--cx-primary-rgb), 0.06), transparent 70%);
+}
+.products {
+  background-image:
+    radial-gradient(50% 40% at 85% 0%, rgba(var(--cx-primary-rgb), 0.07), transparent 70%),
+    radial-gradient(45% 40% at 0% 100%, rgba(var(--cx-secondary-rgb), 0.08), transparent 70%);
+}
+.contact {
+  background-image: radial-gradient(55% 55% at 90% 50%, rgba(var(--cx-secondary-rgb), 0.07), transparent 70%);
+}
+
+
+/* ==========================================================================
+   [3] NAVBAR
+   (Sengaja TANPA backdrop-filter agar panel keranjang di dalamnya tidak bergeser.)
+   ========================================================================== */
+body .navbar {
+  background: rgba(3, 5, 11, 0.9);
+  border-bottom: 1px solid var(--cx-line);
+  box-shadow: 0 1px 0 rgba(var(--cx-primary-rgb), 0.05), 0 24px 48px -32px rgba(var(--cx-primary-rgb), calc(0.25 * var(--cx-glow-strength)));
+}
+body .navbar.visual-scrolled { border-bottom-color: var(--cx-line-strong); }
+
+/* Logo: "sport" putih, "nation" gradasi neon */
+.navbar .navbar-logo { color: var(--cx-text); letter-spacing: 0.01em; }
+.navbar .navbar-logo span {
+  background: var(--cx-grad-text); -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  filter: drop-shadow(0 0 calc(10px * var(--cx-glow-strength)) rgba(var(--cx-primary-rgb), 0.55));
+}
+
+/* Menu */
+.navbar .navbar-nav a { color: var(--cx-muted); letter-spacing: 0.04em; }
+.navbar .navbar-nav a:hover,
+.navbar .navbar-nav a.pm-on { color: var(--cx-primary-soft); }
+.pm-ind { background: var(--cx-grad); box-shadow: 0 0 12px rgba(var(--cx-primary-rgb), 0.9); border-radius: 2px; }
+
+/* Ikon pencarian / keranjang / hamburger */
+.navbar .navbar-extra a,
+.navbar .navbar-extra label { color: var(--cx-text); transition: color 0.3s, filter 0.3s; }
+.navbar .navbar-extra a:hover,
+.navbar .navbar-extra label:hover { color: var(--cx-primary-soft); filter: drop-shadow(0 0 8px rgba(var(--cx-primary-rgb), 0.7)); }
+
+/* Badge jumlah keranjang */
+body .cart-badge {
+  background: var(--cx-grad); color: var(--cx-ink); font-weight: 700;
+  box-shadow: 0 0 14px rgba(var(--cx-primary-rgb), calc(0.7 * var(--cx-glow-strength)));
+}
+
+
+/* ==========================================================================
+   [4] HERO / SLIDER
+   ========================================================================== */
+/* Tint biru-gelap + vignette di atas foto (tidak menutupi teks) */
+.slide::before {
+  background-color: #0a1a33;
+  background-blend-mode: multiply;
+  box-shadow: inset 0 0 220px 60px rgba(1, 3, 10, 0.85);
+}
+
+.promo-tag {
+  background: rgba(var(--cx-primary-rgb), 0.1);
+  border: 1px solid var(--cx-line-strong);
+  color: var(--cx-primary-soft);
+  border-radius: 999px; text-transform: uppercase; letter-spacing: 0.18em;
+  box-shadow: inset 0 0 18px rgba(var(--cx-primary-rgb), 0.1), var(--cx-glow);
+}
+
+.slide .content h1 { color: #fff; text-shadow: 0 4px 40px rgba(0, 0, 0, 0.6); }
+.slide .content h1 span {
+  background: var(--cx-grad-text); -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent; text-shadow: none;
+  filter: drop-shadow(0 0 calc(18px * var(--cx-glow-strength)) rgba(var(--cx-primary-rgb), 0.45));
+}
+.slide .content p { color: #cfd9ea; }
+
+/* Tombol utama (CTA hero, Checkout, Kirim Pesan) */
+body .slide .content .cta,
+body .checkout-btn,
+body .contact .row form .btn {
+  background: var(--cx-grad); color: var(--cx-ink); font-weight: 700; letter-spacing: 0.04em;
+  border: 0; border-radius: var(--cx-radius-sm);
+  box-shadow: 0 10px 30px -10px rgba(var(--cx-primary-rgb), calc(0.7 * var(--cx-glow-strength)));
+}
+body .slide .content .cta:hover,
+body .checkout-btn:hover,
+body .contact .row form .btn:hover {
+  background: var(--cx-grad);
+  box-shadow: 0 14px 40px -8px rgba(var(--cx-primary-rgb), calc(0.9 * var(--cx-glow-strength)));
+}
+/* Kilau yang menyapu saat hover */
+.slide .content .cta::after,
+.checkout-btn::after,
+.contact .row form .btn::after {
+  content: ''; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%; pointer-events: none;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: skewX(-20deg); transition: left 0.7s var(--out, ease);
+}
+.slide .content .cta:hover::after,
+.checkout-btn:hover::after,
+.contact .row form .btn:hover::after { left: 130%; }
+
+/* Panah slider */
+body .slider-btn {
+  background: rgba(3, 5, 11, 0.5); border: 1px solid var(--cx-line); color: var(--cx-text);
+  transition: border-color 0.3s, color 0.3s, box-shadow 0.3s, background 0.3s;
+}
+body .slider-btn:hover {
+  border-color: var(--cx-line-strong); color: var(--cx-primary-soft);
+  background: rgba(var(--cx-primary-rgb), 0.1); box-shadow: var(--cx-glow);
+}
+
+/* Titik navigasi → garis panjang saat aktif */
+.slider-dots .dot {
+  width: 18px; height: 4px; border-radius: 4px; background: rgba(255, 255, 255, 0.28);
+  transition: width 0.45s var(--out, ease), background 0.3s, box-shadow 0.3s;
+}
+.slider-dots .dot.active {
+  width: 44px; background: var(--cx-grad); box-shadow: 0 0 12px rgba(var(--cx-primary-rgb), 0.8);
+}
+
+
+/* ==========================================================================
+   [5] JUDUL SECTION
+   ========================================================================== */
+.about h2, .products h2, .contact h2 { color: var(--cx-text); }
+.about h2 span, .products h2 span, .contact h2 span {
+  background: var(--cx-grad-text); -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+/* Garis neon di bawah judul */
+.about h2::after, .products h2::after, .contact h2::after {
+  content: ''; display: block; width: 84px; height: 2px; margin: 1.2rem auto 0;
+  background: linear-gradient(90deg, transparent, var(--cx-primary), transparent);
+  box-shadow: 0 0 14px rgba(var(--cx-primary-rgb), 0.8);
+}
+.products > p, .contact > p { color: var(--cx-muted); }
+
+
+/* ==========================================================================
+   [6] TENTANG KAMI
+   ========================================================================== */
+.about .row .about-img img {
+  border: 1px solid var(--cx-line); border-radius: var(--cx-radius);
+  box-shadow: 0 0 0 6px rgba(var(--cx-primary-rgb), 0.04), 0 40px 90px -40px rgba(var(--cx-primary-rgb), calc(0.45 * var(--cx-glow-strength)));
+}
+.about .row .content h3 {
+  color: var(--cx-text); padding-left: 1.4rem;
+  border-left: 2px solid var(--cx-primary); box-shadow: -8px 0 18px -10px rgba(var(--cx-primary-rgb), 0.9);
+}
+.about .row .content p { color: var(--cx-muted); }
+
+
+/* ==========================================================================
+   [7] FILTER KATEGORI
+   ========================================================================== */
+body .filter-btn { color: var(--cx-muted); border-color: var(--cx-line); letter-spacing: 0.06em; background: rgba(255, 255, 255, 0.02); }
+body .filter-btn:hover { color: var(--cx-text); border-color: var(--cx-line-strong); background: rgba(var(--cx-primary-rgb), 0.05); }
+body .filter-btn.active,
+body .filter-btn.active:hover { color: #fff; background: transparent; border-color: transparent; }
+/* Pil yang bergeser ke tab aktif (dibuat oleh js/premium.js) */
+body .pm-pill {
+  background: linear-gradient(135deg, #0e7490, #4338ca);
+  box-shadow: 0 0 22px rgba(var(--cx-primary-rgb), calc(0.45 * var(--cx-glow-strength))), inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+
+
+/* ==========================================================================
+   [8] KARTU PRODUK
+   ========================================================================== */
+body .products .product-card {
+  position: relative; overflow: hidden;
+  background: linear-gradient(180deg, var(--cx-surface-2), var(--cx-surface));
+  border: 1px solid var(--cx-line); border-radius: var(--cx-radius);
+}
+/* Garis neon tipis di tepi atas kartu */
+.products .product-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; z-index: 3; pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--cx-primary), transparent);
+  opacity: 0; transition: opacity 0.4s;
+}
+/* Hover: spotlight mengikuti kursor (--mx/--my diisi script bawaan) */
+body .products .product-card:hover {
+  border-color: var(--cx-line-strong);
+  background:
+    radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%), rgba(var(--cx-primary-rgb), 0.12), transparent 45%),
+    linear-gradient(180deg, var(--cx-surface-2), var(--cx-surface));
+  box-shadow: 0 30px 70px -35px rgba(var(--cx-primary-rgb), calc(0.55 * var(--cx-glow-strength)));
+}
+.products .product-card:hover::before { opacity: 1; }
+
+/* Bingkai sudut ala HUD pada foto produk */
+.product-image { position: relative; }
+.product-image::before, .product-image::after {
+  content: ''; position: absolute; width: 16px; height: 16px; z-index: 2; pointer-events: none;
+  border: 0 solid var(--cx-primary); opacity: 0.55; transition: opacity 0.3s, width 0.4s, height 0.4s;
+}
+.product-image::before { top: 10px; left: 10px; border-top-width: 1px; border-left-width: 1px; }
+.product-image::after { bottom: 10px; right: 10px; border-bottom-width: 1px; border-right-width: 1px; }
+.product-card:hover .product-image::before,
+.product-card:hover .product-image::after { opacity: 1; width: 28px; height: 28px; }
+
+/* Badge (Diskon / Terlaris / Baru) */
+body .product-badge {
+  background: rgba(3, 5, 11, 0.78); color: var(--cx-primary-soft);
+  border: 1px solid var(--cx-line-strong); border-radius: 999px;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  box-shadow: 0 0 16px rgba(var(--cx-primary-rgb), calc(0.25 * var(--cx-glow-strength)));
+}
+
+.product-category { color: var(--cx-primary-soft); text-transform: uppercase; letter-spacing: 0.18em; }
+.product-content h3 { color: var(--cx-text); }
+
+/* Bintang rating */
+.product-stars svg { stroke: #3a4a66; fill: none; }
+.product-stars svg.star-full {
+  stroke: var(--cx-primary); fill: var(--cx-primary);
+  filter: drop-shadow(0 0 calc(4px * var(--cx-glow-strength)) rgba(var(--cx-primary-rgb), 0.7));
+}
+.product-stars span { color: var(--cx-muted); }
+
+/* Harga */
+.product-price { color: #fff; }
+.product-price span { color: var(--cx-muted); opacity: 0.8; }
+
+/* Tombol + Keranjang */
+body .add-to-cart-btn {
+  background: transparent; color: var(--cx-primary-soft);
+  border: 1px solid var(--cx-line-strong); border-radius: var(--cx-radius-sm);
+  letter-spacing: 0.03em;
+}
+body .add-to-cart-btn:hover {
+  background: var(--cx-grad); color: var(--cx-ink); border-color: transparent;
+  box-shadow: 0 10px 28px -10px rgba(var(--cx-primary-rgb), calc(0.9 * var(--cx-glow-strength)));
+}
+
+
+/* ==========================================================================
+   [9] KERANJANG & CHECKOUT (panel samping)
+   ========================================================================== */
+body .shopping-cart {
+  background: linear-gradient(180deg, rgba(10, 16, 30, 0.97), rgba(3, 5, 11, 0.99));
+  -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px);
+  border-left: 1px solid var(--cx-line-strong);
+  box-shadow: -40px 0 90px rgba(0, 0, 0, 0.65), -1px 0 24px -4px rgba(var(--cx-primary-rgb), calc(0.35 * var(--cx-glow-strength)));
+  color: var(--cx-text); scrollbar-width: thin;
+  scrollbar-color: rgba(var(--cx-primary-rgb), 0.5) transparent;
+}
+.shopping-cart h3 { color: var(--cx-text); }
+.shopping-cart h3::after {
+  content: ''; display: block; width: 56px; height: 2px; margin-top: 0.8rem;
+  background: var(--cx-grad); box-shadow: 0 0 12px rgba(var(--cx-primary-rgb), 0.8);
+}
+.shopping-cart .checkout-form h4 { color: var(--cx-primary-soft); text-transform: uppercase; letter-spacing: 0.14em; }
+.empty-cart-msg { color: var(--cx-muted); }
+
+/* Item di keranjang */
+.cart-item {
+  background: rgba(255, 255, 255, 0.025); border: 1px solid var(--cx-line); border-radius: var(--cx-radius-sm);
+}
+.cart-item img { border-radius: 6px; border: 1px solid var(--cx-line); }
+.cart-item .item-detail h4 { color: var(--cx-text); }
+.cart-item .item-price { color: var(--cx-primary-soft); }
+.quantity-control button {
+  background: rgba(255, 255, 255, 0.04); color: var(--cx-text); border: 1px solid var(--cx-line);
+  border-radius: 4px; transition: border-color 0.3s, color 0.3s, background 0.3s;
+}
+.quantity-control button:hover { border-color: var(--cx-line-strong); color: var(--cx-primary-soft); background: rgba(var(--cx-primary-rgb), 0.08); }
+.quantity-control span { color: var(--cx-text); }
+.remove-item-btn { color: var(--cx-muted); transition: color 0.3s, text-shadow 0.3s; }
+.remove-item-btn:hover { color: #fb7185; text-shadow: 0 0 12px rgba(251, 113, 133, 0.7); }
+
+/* Ringkasan harga */
+.cart-summary { border-top: 1px solid var(--cx-line); }
+.cart-total { color: var(--cx-muted); }
+.cart-total.final-total, .cart-total.final-total strong { color: #fff; }
+.cart-total.final-total #cart-total-price {
+  color: var(--cx-primary-soft); text-shadow: 0 0 calc(18px * var(--cx-glow-strength)) rgba(var(--cx-primary-rgb), 0.6);
+}
+
+/* Kode promo */
+.promo-section label, .checkout-field > label { color: var(--cx-muted); letter-spacing: 0.04em; }
+body .promo-btn {
+  background: transparent; color: var(--cx-primary-soft);
+  border: 1px solid var(--cx-line-strong); border-radius: var(--cx-radius-sm);
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+}
+body .promo-btn:hover { background: var(--cx-grad); color: var(--cx-ink); border-color: transparent; box-shadow: var(--cx-glow); }
+#promo-message.promo-success { color: #34d399; }
+#promo-message.promo-error { color: #fb7185; }
+
+/* Input & textarea (keranjang) */
+body .promo-row input,
+body .checkout-field input[type="text"],
+body .checkout-field input[type="tel"],
+body .checkout-field textarea {
+  background: rgba(255, 255, 255, 0.03); color: var(--cx-text);
+  border: 1px solid var(--cx-line); border-radius: var(--cx-radius-sm);
+}
+body .promo-row input:focus,
+body .checkout-field input:focus,
+body .checkout-field textarea:focus {
+  outline: none; border-color: var(--cx-primary);
+  box-shadow: 0 0 0 3px rgba(var(--cx-primary-rgb), 0.15), 0 0 20px -4px rgba(var(--cx-primary-rgb), calc(0.5 * var(--cx-glow-strength)));
+}
+::placeholder { color: #5d6c86; opacity: 1; }
+
+/* Pilihan radio (Help Guide, Metode Pembayaran) */
+body .choice-group label {
+  background: rgba(255, 255, 255, 0.025); color: var(--cx-text);
+  border: 1px solid var(--cx-line); border-radius: var(--cx-radius-sm);
+}
+body .choice-group label:hover { border-color: var(--cx-line-strong); }
+body .choice-group label:has(input:checked) {
+  border-color: var(--cx-primary); background: rgba(var(--cx-primary-rgb), 0.1);
+  box-shadow: inset 0 0 18px rgba(var(--cx-primary-rgb), 0.12);
+}
+
+
+/* ==========================================================================
+   [10] KONTAK
+   ========================================================================== */
+body .contact .row {
+  background: linear-gradient(180deg, var(--cx-surface-2), var(--cx-surface));
+  border: 1px solid var(--cx-line); border-radius: var(--cx-radius);
+  box-shadow: 0 40px 90px -50px rgba(var(--cx-secondary-rgb), calc(0.6 * var(--cx-glow-strength)));
+}
+/* Peta Google dibuat gelap + bernuansa biru agar menyatu dengan tema. Hapus baris filter untuk peta asli. */
+.contact .row .map {
+  filter: invert(92%) hue-rotate(185deg) saturate(0.55) brightness(0.92) contrast(0.95);
+  border-radius: var(--cx-radius-sm);
+}
+body .contact .row form .input-group {
+  background: rgba(255, 255, 255, 0.03); border: 1px solid var(--cx-line); border-radius: var(--cx-radius-sm);
+}
+body .contact .row form .input-group:focus-within {
+  border-color: var(--cx-primary);
+  box-shadow: 0 0 0 3px rgba(var(--cx-primary-rgb), 0.15), 0 0 20px -4px rgba(var(--cx-primary-rgb), calc(0.5 * var(--cx-glow-strength)));
+}
+.contact .row form .input-group svg { color: var(--cx-primary); stroke: var(--cx-primary); }
+.contact .row form .input-group input { color: var(--cx-text); background: transparent; }
+
+
+/* ==========================================================================
+   [11] FOOTER
+   ========================================================================== */
+body footer {
+  background-color: #02040a; border-top: 1px solid transparent;
+  border-image: linear-gradient(90deg, transparent, rgba(var(--cx-primary-rgb), 0.6), transparent) 1;
+}
+footer .socials a { color: var(--cx-text); transition: color 0.3s, filter 0.3s, transform 0.3s; }
+footer .socials a:hover { color: var(--cx-primary-soft); filter: drop-shadow(0 0 10px rgba(var(--cx-primary-rgb), 0.8)); transform: translateY(-3px); }
+footer .links a { color: var(--cx-muted); transition: color 0.3s; }
+footer .links a:hover { color: var(--cx-primary-soft); }
+footer .credit { color: var(--cx-muted); }
+footer .credit a { color: var(--cx-primary-soft); font-weight: 600; }
+
+
+/* ==========================================================================
+   [12] MOBILE (≤ 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Menu hamburger yang terbuka */
+  .navbar .navbar-nav {
+    background: rgba(3, 5, 11, 0.97); border: 1px solid var(--cx-line); border-radius: var(--cx-radius);
+  }
+  .navbar .navbar-nav a { color: var(--cx-text); }
+  .navbar .navbar-nav a:hover { color: var(--cx-primary-soft); }
+  .slider-dots .dot { width: 14px; }
+  .slider-dots .dot.active { width: 34px; }
+  body::before { background-size: 48px 48px; }
+}
+
+
+/* ==========================================================================
+   [13] AKSESIBILITAS — hormati pengaturan "kurangi gerakan"
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  body::after { display: none; }
+  .slide .content .cta::after, .checkout-btn::after, .contact .row form .btn::after { display: none; }
+}
