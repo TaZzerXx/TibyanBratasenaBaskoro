@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Toko Olahraga SportNation</title>
 
-    <!-- Google Fonts (Poppins) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,28 +13,20 @@
       rel="stylesheet"
     />
 
-    <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
 
-    <!-- Style CSS -->
     <link rel="stylesheet" href="css/style2_cart_checkout2.css" />
-    <!-- Premium layer (tambahan, file asli tidak diubah) -->
+    
     <link rel="stylesheet" href="css/premium.css" />
-    <!-- ============================================================
-         ELEGANT MOTION (desain editorial + animasi halus), dimuat PALING AKHIR.
-         Palet warna asli dipertahankan (memakai var(--primary)).
-         Edit kecepatan/bentuk/efek: css/elegant-motion.css bagian [1] VARIABEL.
-         Kembali ke tampilan sebelum tema ini: hapus/komentari 1 baris di bawah.
-         ============================================================ -->
+    
     <link rel="stylesheet" href="css/elegant-motion.css" />
   </head>
 
   <body>
-    <!-- Navbar start -->
+    
     <nav class="navbar">
       <a href="#" class="navbar-logo">sport<span>nation</span>.</a>
 
-      <!-- Trigger Checkbox Pure CSS (Hamburger & Cart) -->
       <input type="checkbox" id="menu-toggle" />
       <input type="checkbox" id="cart-toggle" />
 
@@ -48,34 +39,28 @@
 
       <div class="navbar-extra">
         <a href="#products" id="search"><i data-feather="search"></i></a>
-        
-        <!-- Tombol Keranjang Belanja -->
+
         <label for="cart-toggle" id="shopping-card-btn">
           <i data-feather="shopping-cart"></i>
           <span class="cart-badge" id="cart-badge">0</span>
         </label>
-        
-        <!-- Tombol Mobile Hamburger Menu -->
+
         <label for="menu-toggle" id="hamburger-menu"><i data-feather="menu"></i></label>
       </div>
 
-      <!-- Modal Shopping Cart Panel -->
       <div class="shopping-cart">
         <h3>Keranjang Belanja</h3>
 
-        <!-- Daftar barang -->
         <div class="cart-items" id="cart-items-container">
           <p class="empty-cart-msg">Keranjang Anda masih kosong.</p>
         </div>
 
-        <!-- Ringkasan harga -->
         <div class="cart-summary">
           <div class="cart-total">
             <span>Subtotal:</span>
             <span id="cart-subtotal-price">IDR 0</span>
           </div>
 
-          <!-- Kode Promo -->
           <div class="promo-section">
             <label for="promo-code">Kode Promo</label>
             <div class="promo-row">
@@ -96,7 +81,6 @@
           </div>
         </div>
 
-        <!-- Form Checkout -->
         <div class="checkout-form">
           <h4>Data Checkout</h4>
 
@@ -143,12 +127,10 @@
         </div>
       </div>
     </nav>
-    <!-- Navbar end -->
 
-    <!-- Hero Section / Promo Slider start -->
     <section class="hero" id="home">
       <div class="hero-slider">
-        <!-- Slide 1: Promo Utama -->
+        
         <div class="slide active" style="background-image: url(banner.jfif);">
           <div class="content">
             <span class="promo-tag">Diskon Spesial 30%</span>
@@ -158,7 +140,6 @@
           </div>
         </div>
 
-        <!-- Slide 2: Promo Basketball -->
         <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1920&q=80');">
           <div class="content">
             <span class="promo-tag">Koleksi Terbaru 2026</span>
@@ -168,7 +149,6 @@
           </div>
         </div>
 
-        <!-- Slide 3: Promo Lari -->
         <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1920&q=80');">
           <div class="content">
             <span class="promo-tag">Gratis Ongkir Seluruh Indonesia</span>
@@ -179,20 +159,16 @@
         </div>
       </div>
 
-      <!-- Tombol Navigasi Slider -->
       <button class="slider-btn prev-btn" onclick="changeSlide(-1)">&#10094;</button>
       <button class="slider-btn next-btn" onclick="changeSlide(1)">&#10095;</button>
 
-      <!-- Dots Navigasi -->
       <div class="slider-dots">
         <span class="dot active" onclick="currentSlide(0)"></span>
         <span class="dot" onclick="currentSlide(1)"></span>
         <span class="dot" onclick="currentSlide(2)"></span>
       </div>
     </section>
-    <!-- Hero Section end -->
 
-    <!-- About Section start -->
     <section id="about" class="about">
       <h2><span>Tentang</span> Kami</h2>
 
@@ -207,14 +183,11 @@
         </div>
       </div>
     </section>
-    <!-- About Section end -->
 
-    <!-- Products Section start -->
     <section id="products" class="products">
       <h2><span>Kategori</span> Produk</h2>
       <p>Pilihan perlengkapan olahraga terfavorit sesuai kebutuhan gaya hidupmu.</p>
 
-      <!-- FILTER KATEGORI PRODUK -->
       <div class="product-filter">
         <button class="filter-btn active" onclick="filterProducts('all', this)">Semua Produk</button>
         <button class="filter-btn" onclick="filterProducts('basketball', this)">Basketball</button>
@@ -223,7 +196,7 @@
       </div>
 
       <div class="row">
-        <!-- PRODUK LARI 1 -->
+        
         <div class="product-card" data-category="lari">
           <div class="product-badge">Diskon 15%</div>
           <div class="product-image">
@@ -247,7 +220,6 @@
           </div>
         </div>
 
-        <!-- PRODUK BASKETBALL 1 -->
         <div class="product-card" data-category="basketball">
           <div class="product-badge">Terlaris</div>
           <div class="product-image">
@@ -271,7 +243,6 @@
           </div>
         </div>
 
-        <!-- PRODUK SEPAKBOLA 1 -->
         <div class="product-card" data-category="sepakbola">
           <div class="product-image">
             <img src="https://images.unsplash.com/photo-1614632537190-23e4146777db?auto=format&fit=crop&w=600&q=80" alt="Bola Adidas Finale 18" />
@@ -294,7 +265,6 @@
           </div>
         </div>
 
-        <!-- PRODUK BASKETBALL 2 -->
         <div class="product-card" data-category="basketball">
           <div class="product-image">
             <img src="https://images.unsplash.com/photo-1579338559194-a162d19bf842?auto=format&fit=crop&w=600&q=80" alt="Sepatu Basket High Jump" />
@@ -317,7 +287,6 @@
           </div>
         </div>
 
-        <!-- PRODUK SEPAKBOLA 2 -->
         <div class="product-card" data-category="sepakbola">
           <div class="product-badge">Baru</div>
           <div class="product-image">
@@ -341,7 +310,6 @@
           </div>
         </div>
 
-        <!-- PRODUK LARI 3 -->
         <div class="product-card" data-category="lari">
           <div class="product-image">
             <img src="data:image/jpeg;base64,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" alt="Adizero Evo SL" />
@@ -363,7 +331,7 @@
             </button>
           </div>
         </div>
-        <!-- PRODUK LARI 3 -->
+        
         <div class="product-card" data-category="lari">
           <div class="product-image">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNrrDsAPV9TJB9WVR9mGitl2nu3F9qg51-XbXySdpRiw&s=10" alt="Adizero Adios Pro 4" />
@@ -385,7 +353,7 @@
             </button>
           </div>
         </div>
-        <!-- PRODUK LARI 3 -->
+        
         <div class="product-card" data-category="lari">
           <div class="product-image">
             <img src="https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=600&q=80" alt="Smartwatch Runner GPS" />
@@ -407,7 +375,7 @@
             </button>
           </div>
         </div>
-        <!-- PRODUK LARI 4 -->
+        
         <div class="product-card" data-category="lari">
           <div class="product-badge">Diskon 15%</div>
           <div class="product-image">
@@ -430,7 +398,7 @@
             </button>
           </div>
         </div>
-        <!-- PRODUK LARI 5 -->
+        
         <div class="product-card" data-category="lari">
           <div class="product-badge">Diskon 20%</div>
           <div class="product-image">
@@ -453,7 +421,7 @@
             </button>
           </div>
         </div>
-        <!-- PRODUK LARI 6 -->
+        
         <div class="product-card" data-category="lari">
           <div class="product-image">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwMpuCsdcpbk50fr1OowKbaYz1sgRDSp1GKMFBGQH4qw&s=10" alt="Puma Deviate Nitro Elite 4" />
@@ -475,7 +443,7 @@
             </button>
           </div>
         </div>
-        <!-- PRODUK LARI 7 -->
+        
         <div class="product-card" data-category="lari">
           <div class="product-image">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJZ0_NyHjeIe6HZeXXz46_iaWJOWbdTkgCgQn8laa9dg&s=10" alt="Puma ForeverRun Nitro 3" />
@@ -497,7 +465,7 @@
             </button>
           </div>
         </div>
-        <!-- PRODUK LARI 8 -->
+        
         <div class="product-card" data-category="lari">
           <div class="product-image">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQO7XZX-T_T0eUEGgjqztdJigabh7VjDKjQsAVcVG78UQ&s=10" alt="Asics Novablast 6" />
@@ -519,7 +487,7 @@
             </button>
           </div>
         </div>
-        <!-- PRODUK LARI 9 -->
+        
         <div class="product-card" data-category="lari">
           <div class="product-image">
             <img src="https://department.co.id/cdn/shop/files/CuuQCS.jpg?v=1780744605" alt="Asics Gel-Nimbus 28" />
@@ -541,7 +509,7 @@
             </button>
           </div>
         </div>
-        <!-- PRODUK LARI 10 -->
+        
         <div class="product-card" data-category="lari">
           <div class="product-image">
             <img src="https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto,u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/ae8fed6a-2954-43cd-ad87-8618b98fb51d/AIR+ZOOM+ALPHAFLY+NEXT%25+3.png" alt="Nike Alphafly 3" />
@@ -563,7 +531,7 @@
             </button>
           </div>
         </div>
-        <!-- PRODUK LARI 10 -->
+        
         <div class="product-card" data-category="lari">
           <div class="product-image">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTP1-TmgyL0UJbsvaiiX3xO0Uzap_7jy4Z_yfuYMDcDQw&s=10" alt="Jersey Celtics" />
@@ -585,7 +553,7 @@
             </button>
           </div>
         </div>
-        <!-- PRODUK LARI 11 -->
+        
         <div class="product-card" data-category="lari">
           <div class="product-image">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSemMPiKJeiG-e29n3lcDdtQHPZUkCFuBrwTbsNiRw5rw&s" alt="Run Lightweight Running Crew Socks" />
@@ -607,7 +575,7 @@
             </button>
           </div>
         </div>
-        <!-- PRODUK LARI 12 -->
+        
         <div class="product-card" data-category="lari">
           <div class="product-image">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCjDXzr5HSKSBPm8NkxSohzbibOFtvIGkqXnLTUnP4-g&s=10" alt="Running Lightweight No-Show Socks" />
@@ -629,7 +597,7 @@
             </button>
           </div>
         </div>
-<!-- PRODUK BASKETBALL 3 -->
+
         <div class="product-card" data-category="basketball">
           <div class="product-image">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqVDVz_-JIWcpBzptttMqxF8GgcKgT2xj7XsrMNe1kLQ&s=10" alt="Jersey" />
@@ -651,7 +619,7 @@
             </button>
           </div>
         </div>
-<!-- PRODUK BASKETBALL 4 -->
+
         <div class="product-card" data-category="basketball">
           <div class="product-image">
             <img src="https://img.ncrsport.com/img/storage/large/AJ3905-010-1.jpg" alt="Celana Basket" />
@@ -673,7 +641,7 @@
             </button>
           </div>
         </div>
-<!-- PRODUK BASKETBALL 5 -->
+
         <div class="product-card" data-category="basketball">
           <div class="product-image">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQW0ApnqVlIlqrCUFjeVQYpAq-FYhqktNetw7-8Jx3NA&s=10" alt="Kaos Kaki" />
@@ -695,7 +663,7 @@
             </button>
           </div>
         </div>
-<!-- PRODUK BASKETBALL 6 -->
+
         <div class="product-card" data-category="basketball">
           <div class="product-image">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSd10ZlvvA5tcXZOVrCQ5i9mJnhw-wcdT1ieYE6AxznEQ&s=10" alt="Tas Duffel Basket" />
@@ -717,7 +685,7 @@
             </button>
           </div>
         </div>
-<!-- PRODUK BASKETBALL 7 -->
+
         <div class="product-card" data-category="lari">
           <div class="product-image">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkeJcpWS250DvoxoM4Kylj_Tm5Wy9RqgRvl2tq43tCqQ&s=10" alt="Jersey Celtics" />
@@ -739,7 +707,7 @@
             </button>
           </div>
         </div>
-<!-- PRODUK Basketball 8 -->
+
         <div class="product-card" data-category="basketball">
           <div class="product-image">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDFZvZUeSNh4FrC4dgy7QHCDwdC9x-G6FHSy4P3rPdYw&s=10" alt="Nike Kyrie 7" />
@@ -761,7 +729,7 @@
             </button>
           </div>
         </div>
-<!-- PRODUK BASKETBALL 9 -->
+
         <div class="product-card" data-category="basketball">
           <div class="product-image">
             <img src="https://img.ncrsport.com/img/storage/large/FD7327-500-2.jpg" alt="Nike Ja Morant 2" />
@@ -783,7 +751,7 @@
             </button>
           </div>
         </div>
-    <!-- PRODUK BASKETBALL 10 -->
+    
         <div class="product-card" data-category="basketball">
           <div class="product-image">
             <img src="data:image/jpeg;base64,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" alt="Nike Jordan Luka 77" />
@@ -805,7 +773,7 @@
             </button>
           </div>
         </div>
-    <!-- PRODUK BASKETBALL 11 -->
+    
         <div class="product-card" data-category="basketball">
           <div class="product-image">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQATvM30oNTDvw8l7AhoR3cWR-l3v5EVVMOOQ9wniJAeg&s=10" alt="Ballerbro BB Pro 1" />
@@ -827,7 +795,7 @@
             </button>
           </div>
         </div>
-    <!-- PRODUK BASKETBALL 12 -->
+    
         <div class="product-card" data-category="basketball">
           <div class="product-image">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKpajLf3JzVikGuh60WFHbpsRGTBlddlitUOsimiYXvw&s=10" alt="Puma MB.03 Miami" />
@@ -849,7 +817,7 @@
             </button>
           </div>
         </div>
-    <!-- PRODUK BASKETBALL 13 -->
+    
         <div class="product-card" data-category="basketball">
           <div class="product-image">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKF3TzcxZD1jM8radNIIs5_TaeTw2-DG1Zb-KUmNXCMA&s=10" alt="Puma MB.05 Voltage" />
@@ -872,7 +840,6 @@
           </div>
         </div>
 
-    <!-- PRODUK BASKETBALL 14 -->
         <div class="product-card" data-category="basketball">
           <div class="product-image">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGSZEVGLSm1dJ3lo0lfk-PxtnQ4KPtLuT3Ktyxz8K9YQ&s=10" alt="Puma MB.03 Miami" />
@@ -895,7 +862,6 @@
           </div>
         </div>
 
-      <!-- PRODUK BASKETBALL 15 -->
         <div class="product-card" data-category="basketball">
           <div class="product-image">
             <img src="https://assets.adidas.com/images/w_500,f_auto,q_auto/dc4288103f624172bd4505d8bf20efee_9366/ANTHONY_EDWARDS_2_Shoes_Silver_JQ9497_01_00_standard.jpg" alt="Adidas Anthony Edwards 2" />
@@ -918,7 +884,6 @@
           </div>
         </div>
 
-      <!-- PRODUK BASKETBALL 16 -->
         <div class="product-card" data-category="basketball">
           <div class="product-image">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFd81Lmco6XR4krfPNb3DmrZ99713YCnvgxWZsq4xgWAZ8HdNdBB6naYU&s=10" alt="Adidas Adizero Select 3" />
@@ -940,7 +905,7 @@
             </button>
           </div>
         </div>
-      <!-- PRODUK BASKETBALL 17 -->
+      
         <div class="product-card" data-category="basketball">
           <div class="product-image">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYr5xLyhVUDEk_Kdj9fgYLBBmNdGSqoZKmIMGee0G8ww&s=10" alt="Adidas Adizero Select 3" />
@@ -962,8 +927,7 @@
             </button>
           </div>
         </div>
-      
-      <!-- PRODUK BASKETBALL 18 -->
+
         <div class="product-card" data-category="basketball">
           <div class="product-image">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMmufURCo55JcJd8ZjbDNMztJYzN2keDElwBDg7ZzLfw&s=10" alt="Bola Molten BG 3000" />
@@ -986,7 +950,6 @@
           </div>
         </div>
 
-        <!-- PRODUK BASKETBALL 18 -->
         <div class="product-card" data-category="basketball">
           <div class="product-image">
             <img src="https://sportaways.com/storage/products/2026/04/ballerbro-mz7-leather-7-bds9glmx.webp" alt="Bola Ballebro M27" />
@@ -1009,7 +972,6 @@
           </div>
         </div>
 
-    <!-- PRODUK SEPAKBOLA 3 -->
         <div class="product-card" data-category="sepakbola">
           <div class="product-image">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIker7NrvFNGUNKukPAxi6uwTIYVxtBt1dSyNjiZzJ_Q&s=10" alt="Adidas Future 9" />
@@ -1031,7 +993,7 @@
             </button>
           </div>
         </div>
-    <!-- PRODUK SEPAKBOLA 4 -->
+    
         <div class="product-card" data-category="sepakbola">
           <div class="product-image">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNWMYSf_SBCq9dzTm7ZDRWsN4bXHgxEl4bQQ63HK1pLg&s=10" alt="Adidas Predator Elite" />
@@ -1053,7 +1015,7 @@
             </button>
           </div>
         </div>
-    <!-- PRODUK SEPAKBOLA 5 -->
+    
         <div class="product-card" data-category="sepakbola">
           <div class="product-image">
             <img src="https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/107744/02/sv01/fnd/IDN/fmt/png/Sepatu-Sepak-Bola-ULTRA-ULTIMATE-FG/AG" alt="Adidas Ultra Ultimate" />
@@ -1075,7 +1037,7 @@
             </button>
           </div>
         </div>
-      <!-- PRODUK SEPAKBOLA 6 -->
+      
         <div class="product-card" data-category="sepakbola">
           <div class="product-image">
             <img src="https://sportaways.com/storage/products/6375/sepatu-bola-adidas-f50-messi-league-fg-jp7446-ftwwhtlucredsilvmt-ftwbla-odck-1.webp" alt="Adidas F50 Messi" />
@@ -1098,7 +1060,6 @@
           </div>
         </div>
 
-      <!-- PRODUK SEPAKBOLA 6 -->
         <div class="product-card" data-category="sepakbola">
           <div class="product-image">
             <img src="https://sportaways.com/storage/products/5290/promo-sepatu-futsal-adidas-x-crazyfast-league-fg-ie2377-solredftwwhttesoye-oy37-1.webp" alt="Adidas X Crazyfast League" />
@@ -1120,8 +1081,7 @@
             </button>
           </div>
         </div>
-      
-      <!-- PRODUK SEPAKBOLA 7 -->
+
         <div class="product-card" data-category="sepakbola">
           <div class="product-image">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyl_pdu_t1pLFm-Qtng6znXWwPSvHGkfJooZoWkPBzPA&s=10" alt="Cone Latihan Essential" />
@@ -1144,7 +1104,6 @@
           </div>
         </div>
 
-      <!-- PRODUK SEPAKBOLA 8 -->
         <div class="product-card" data-category="sepakbola">
           <div class="product-image">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR08ZL39aqbOtT3o-3-tMYTB5eXQ8oHuSN_UflM6TgCTA&s=10" alt="Peluit Wasit" />
@@ -1167,7 +1126,6 @@
           </div>
         </div>
 
-      <!-- PRODUK SEPAKBOLA 8 -->
         <div class="product-card" data-category="sepakbola">
           <div class="product-image">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDY-YC0G2PBEBGVOzOvcsBCe26732YLR7nyN3NOiPh1g&s=10" alt="Puma Ultra Nitro 7" />
@@ -1190,18 +1148,9 @@
           </div>
         </div>
 
-
-
-
-
-
-
-
       </div>
     </section>
-    <!-- Products Section end -->
 
-    <!-- Contact Section start -->
     <section id="contact" class="contact">
       <h2><span>Kontak</span> Kami</h2>
       <p>Hubungi kami jika Anda memiliki pertanyaan atau butuh bantuan.</p>
@@ -1232,9 +1181,7 @@
         </form>
       </div>
     </section>
-    <!-- Contact Section end -->
 
-    <!-- Footer start -->
     <footer>
       <div class="socials">
         <a href="https://www.instagram.com/tibyanbbaskoro/" target="_blank"><i data-feather="instagram"></i></a>
@@ -1253,13 +1200,10 @@
         <p>Created by <a href="#">sportnation</a>. | &copy; 2026.</p>
       </div>
     </footer>
-    <!-- Footer end -->
 
-    <!-- Script JS -->
     <script>
       feather.replace();
 
-      // FITUR HERO SLIDER PROMO
       let currentSlideIndex = 0;
       const slides = document.querySelectorAll('.slide');
       const dots = document.querySelectorAll('.dot');
@@ -1292,7 +1236,7 @@
         slideInterval = setInterval(() => {
           currentSlideIndex++;
           showSlide(currentSlideIndex);
-        }, 5000); // Ganti slide otomatis setiap 5 detik
+        }, 5000); 
       }
 
       function resetAutoplay() {
@@ -1302,7 +1246,6 @@
 
       startAutoplay();
 
-      // FITUR FILTER KATEGORI PRODUK
       function filterProducts(category, btn) {
         const buttons = document.querySelectorAll('.filter-btn');
         const cards = document.querySelectorAll('.product-card');
@@ -1320,12 +1263,9 @@
         });
       }
 
-      // FITUR KERANJANG BELANJA
       let cart = [];
       let appliedPromo = '';
 
-      // Promo hanya sebagai contoh UI.
-      // Tidak ada perhitungan diskon khusus dari kode promo.
       const promoCodes = ['SPORT10', 'SPORT20', 'HEMAT50'];
 
       function addToCart(name, price, img) {
@@ -1340,13 +1280,11 @@
         updateCartUI();
       }
 
-      // Tombol + jumlah barang
       function increaseQty(index) {
         cart[index].qty += 1;
         updateCartUI();
       }
 
-      // Tombol - jumlah barang
       function decreaseQty(index) {
         if (cart[index].qty > 1) {
           cart[index].qty -= 1;
@@ -1362,7 +1300,6 @@
         updateCartUI();
       }
 
-      // Kode promo hanya memberikan pesan, tidak mengubah harga.
       function applyPromo() {
         const input = document.getElementById('promo-code');
         const message = document.getElementById('promo-message');
@@ -1441,13 +1378,11 @@
         cartSubtotalPrice.innerText =
           `IDR ${totalPrice.toLocaleString('id-ID')}`;
 
-        // Promo belum menghitung potongan harga.
         cartDiscountPrice.innerText = 'IDR 0';
         cartTotalPrice.innerText =
           `IDR ${totalPrice.toLocaleString('id-ID')}`;
       }
 
-      // Checkout hanya menampilkan data yang dipilih/diisi.
       function checkout() {
         if (cart.length === 0) {
           alert('Keranjang masih kosong!');
@@ -1491,12 +1426,8 @@
       updateCartUI();
     </script>
 
-    <!-- Script Visual Enhancement (terpisah dari script asli) -->
     <script>
-      // ========================================
-      // VISUAL ENHANCEMENT ONLY
-      // DO NOT MODIFY ORIGINAL LOGIC
-      // ========================================
+
       (function () {
         'use strict';
         const $ = (s, r = document) => r.querySelector(s);
@@ -1504,7 +1435,6 @@
         const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
         const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        // 1. Scroll reveal + stagger
         const targets = $$('.about h2, .about .about-img, .about .row .content, .products h2, .products > p, .product-filter, .product-card, .contact h2, .contact > p, .contact .row, footer .socials, footer .links, footer .credit');
         targets.forEach(el => el.classList.add('visual-reveal'));
         const io = new IntersectionObserver((entries) => {
@@ -1518,7 +1448,6 @@
         }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
         targets.forEach(el => io.observe(el));
 
-        // 2. Navbar scroll effect + hero parallax ringan
         const nav = $('.navbar');
         const hero = $('.hero');
         let ticking = false;
@@ -1537,7 +1466,6 @@
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
 
-        // 3. Ripple + feedback tombol (listener tambahan, tidak menimpa handler asli)
         document.addEventListener('pointerdown', e => {
           const b = e.target.closest('.cta, .checkout-btn, .promo-btn, .filter-btn, .add-to-cart-btn, .contact .btn');
           if (!b || calm) return;
@@ -1559,7 +1487,6 @@
           setTimeout(() => b.classList.remove('visual-added'), 700);
         });
 
-        // 4. Animasi keranjang (hanya mengamati DOM, tidak mengubah logic)
         const badge = $('#cart-badge');
         if (badge) {
           new MutationObserver(() => {
@@ -1585,7 +1512,6 @@
           }).observe(box, { childList: true });
         }
 
-        // 5. Animasi ulang kartu saat filter kategori berubah
         const cards = $$('.product-card');
         const shown = new WeakMap();
         cards.forEach(c => shown.set(c, true));
@@ -1606,7 +1532,6 @@
           if (e.target.closest('.filter-btn, .slide .cta')) requestAnimationFrame(syncCards);
         });
 
-        // 6. Mouse interaction (hanya perangkat dengan hover + pointer halus)
         if (fine && !calm) {
           const glow = document.createElement('div');
           glow.className = 'visual-cursor-glow';
@@ -1641,7 +1566,7 @@
       })();
     </script>
       <script src="js/premium.js"></script>
-      <!-- Fitur pencarian produk (ikon cari di navbar). Edit teks/jumlah saran: js/search.js bagian CONFIG -->
+      
       <script src="js/search.js"></script>
   </body>
 </html>
